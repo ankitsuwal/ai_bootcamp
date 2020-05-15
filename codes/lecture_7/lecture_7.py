@@ -24,8 +24,8 @@ class Net(object):
 	"""docstring for Net"""
 	def __init__(self, arg):
 		super(Net, self).__init__()
-		fc1 = nn.Linear(3, 10)
-		fc2 = nn.Linear(10, 1)
+		self.fc1 = nn.Linear(3, 10)
+		self.fc2 = nn.Linear(10, 1)
 
 	def forward(self, x):
 		z = F.relu(self.fc1(x))
@@ -35,3 +35,5 @@ class Net(object):
 net = Net()
 criterion = nn.MSELoss()
 optim = optim.SGD(net.parameters(), lr=0.01)
+
+# TODO: training loop(in lecture:6)

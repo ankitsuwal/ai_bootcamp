@@ -7,16 +7,16 @@ import cv2
     # Below code for match file name and save into another directory.
 #####################################################################
 
-# dst = "/home/dell/work/projects/images/video/68_img/"
-# txt_path = "/home/dell/work/projects/images/video/yolo_5_14_2020/"
-# img_path = "/home/dell/work/projects/images/video/5_14_2020/"
-# for file in listdir(txt_path):
-#     txt = file.split(".")[0] + ".jpg"
-#     for root, dirs, files in os.walk(img_path):
-#         if txt in files:
-#             image = img_path + txt
-#             shutil.copy(image, dst)
-#             print(txt)
+dst = "/home/dell/work/projects/images/video/to_check/dst/"
+txt_path = "/home/dell/work/projects/images/video/to_check/2000/"
+img_path = "/home/dell/work/projects/images/video/to_check/2000_img/"
+for file in listdir(img_path):
+    txt_name = file.split(".")[0] + ".txt"
+    for root, dirs, files in os.walk(txt_path):
+        if txt_name in files:
+            txt_file = txt_path + txt_name
+            shutil.copy(txt_file, dst)
+            print(txt_name)
 
 
 #################################################
@@ -48,9 +48,9 @@ import cv2
 # for rename the file in same directory
 ##################################################################
 # # ailab_15_5_0.jpg
-if __name__ == "__main__":
-    path = "/home/dell/work/projects/images/video/5_13_2020/"
-    # path = "/home/dell/work/projects/images/video/ats/"
-    for file in listdir(path):
-        name = file[5:]
-        os.rename(path + file, path + "recep" + name)
+# if __name__ == "__main__":
+#     path = "/home/dell/work/projects/images/video/5_13_2020/"
+#     # path = "/home/dell/work/projects/images/video/ats/"
+#     for file in listdir(path):
+#         name = file[5:]
+#         os.rename(path + file, path + "recep" + name)

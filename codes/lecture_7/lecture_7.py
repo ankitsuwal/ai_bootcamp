@@ -90,10 +90,8 @@ class TrainTest():
         self.testloader = DataLoader(self.test_dataset, batch_size=1, shuffle=True)        
     
     def train(self):
-
         for i in range(self.epoch):
             running_loss = 0
-            print("11111111111111111111111111")
             for j, data in enumerate(self.trainloader, 0):
                 inputs, label = data[0], data[1]
                 self.optimizer.zero_grad()
@@ -101,35 +99,28 @@ class TrainTest():
                 loss = self.loss_func(output, label)
                 loss.backward()
                 self.optimizer.step()
-
                 running_loss += loss.item()
-            logger.info("Epoch: {}, Loss: {}".format(i + 1, running_loss / len(self.trainloader)))
-        logger.info("Training complete")
+            print("Epoch: {}, Loss: {}".format(i + 1, running_loss / len(self.trainloader)))
+        print("Training complete")
 
     def test(self):
         running_loss = 0
         with torch.no_grad():
-            print("2222222222222222222222222222222")
             for data in self.testloader:
                 inputs, label = data[0], data[1]
                 output = self.net(inputs)
                 loss = self.loss_func(output, label)
                 running_loss += loss.item()
-
-            logger.info("Loss on test data: {}".format(running_loss/len(self.testloader)))
+            print("Loss on test data: {}".format(running_loss/len(self.testloader)))
 
 
 if __name__ == "__main__":
     device = get_device()
-    print(">>>: {}".format(device))
-    # logger.info("Device using: {}".format(device))
+    print("Device In Use: {}".format(device))
     net = IrisNet(3, 10, 1).to(device)
-    # print("Created Neural Network: {}".format(net))
     data_path = "/home/dell/work/ai_bootcamp/codes/lecture_7/iris.csv"
     irisd_obj = DataLoad(data_path)
     train_dataset, test_dataset = irisd_obj.data_loder()
     obj = TrainTest(net, train_dataset, test_dataset)
     obj.train()
     obj.test()
-
-
